@@ -31,7 +31,7 @@ function generateBanner(title) {
       const char = row[i];
       let charBox = document.createElement("div");
       let rn = random(2.5, 3.5);
-      if (r==2) {
+      if (r==rows.length-1) {
         rn = 1.5
       }
       charBox.innerHTML = "<span class='char'>" + char + "</span>";
