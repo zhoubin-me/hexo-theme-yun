@@ -24,7 +24,7 @@ function generateBanner(title) {
   // const charContainer = document.querySelector(".banner-char-container");
   let rows = title.split('|')
   for (let r = 0; r < rows.length; r++){
-    row = rows[r]
+    row = rows[r].trim()
     const charContainer = document.getElementById("s" + r.toString());
     charContainer.innerHTML = "";
     for (let i = 0; i < row.length; i++) {
