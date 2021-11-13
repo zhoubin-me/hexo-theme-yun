@@ -30,12 +30,24 @@ function generateBanner(title) {
     for (let i = 0; i < row.length; i++) {
       const char = row[i];
       let charBox = document.createElement("div");
-      let rn = random(3.5, 4.5);
+      let rn = random(2.5, 3.5);
+      if (r==2) {
+        rn = 1.5
+      }
       charBox.innerHTML = "<span class='char'>" + char + "</span>";
       let charSize = rn + "rem";
 
       charBox.classList.add("char-box");
       charContainer.appendChild(charBox);
+
+      if (2 % 2 === 0) {
+        charBox.classList.add("char-left");
+        charBox.style.animationName = "char-move-left";
+      } else {
+        charBox.classList.add("char-right");
+        charBox.style.animationName = "char-move-right";
+      }
+
       charBox.style.setProperty("--banner-char-size", charSize);
 
       const width = window
