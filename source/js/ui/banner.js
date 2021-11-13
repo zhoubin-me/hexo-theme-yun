@@ -20,45 +20,33 @@ function random(min, max) {
  */
 function generateBanner(title) {
   let sumH = 0;
-  const lineTop = document.querySelector(".vertical-line-top");
-  const lineBottom = document.querySelector(".vertical-line-bottom");
-  const charContainer = document.querySelector(".banner-char-container");
-  charContainer.innerHTML = "";
 
-  for (let i = 0; i < title.length; i++) {
-    const char = title[i];
-    let charBox = document.createElement("div");
-    let rn = random(1.5, 3.5);
-    charBox.innerHTML = "<span class='char'>" + char + "</span>";
-    let charSize = rn + "rem";
+  // const charContainer = document.querySelector(".banner-char-container");
+  let rows = title.split('|')
+  for (let r = 0; r < rows.length; r++){
+    row = rows[r]
+    const charContainer = document.getElementById("s" + r.toString());
+    charContainer.innerHTML = "";
+    for (let i = 0; i < row.length; i++) {
+      const char = row[i];
+      let charBox = document.createElement("div");
+      let rn = random(3.5, 4.5);
+      charBox.innerHTML = "<span class='char'>" + char + "</span>";
+      let charSize = rn + "rem";
 
-    charBox.classList.add("char-box");
-    charContainer.appendChild(charBox);
+      charBox.classList.add("char-box");
+      charContainer.appendChild(charBox);
+      charBox.style.setProperty("--banner-char-size", charSize);
 
-    if (i % 2 === 0) {
-      charBox.classList.add("char-left");
-      charBox.style.animationName = "char-move-left";
-    } else {
-      charBox.classList.add("char-right");
-      charBox.style.animationName = "char-move-right";
+      const width = window
+        .getComputedStyle(document.getElementsByClassName("char-box")[i])
+        .getPropertyValue("height");
+      charBox.style.setProperty("--banner-empty-border-size", width);
+
     }
-    charBox.style.setProperty("--banner-char-size", charSize);
-
-    const width = window
-      .getComputedStyle(document.getElementsByClassName("char-box")[i])
-      .getPropertyValue("width");
-    charBox.style.setProperty("--banner-empty-border-size", width);
-
-    sumH += rn;
   }
-  let height = "calc(50vh - " + sumH / 2 + "rem)";
-  lineTop.style.setProperty("--banner-line-height", height);
-  lineBottom.style.setProperty("--banner-line-height", height);
-
-  // set animation name
-  lineTop.style.animationName = "extend-line";
-  lineBottom.style.animationName = "extend-line";
 }
+
 
 /**
  * 初始化 banner
@@ -67,6 +55,7 @@ function initBanner() {
   if (window.banner) {
     setTimeout(() => {
       generateBanner(CONFIG.title);
+      // typedBanner(CONFIG.title)
     }, 100);
   }
 }

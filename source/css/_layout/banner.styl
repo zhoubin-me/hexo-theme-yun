@@ -19,17 +19,12 @@ if (hexo-config('banner.border')) {
 #banner {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   height: 100vh;
-}
-
-#banner2 {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 93vh;
+  gap: 5vh;
+  justify-content: center;
+  align-content: space-between;
 }
 
 .banner-char-container {
