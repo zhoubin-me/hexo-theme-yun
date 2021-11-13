@@ -1,10 +1,11 @@
 - var title = (__('title') !== 'title' && __('title')) || config.title
 - var author = config.author + (config.email ? ',' + config.email : '')
 - var copyright = config.copyright || config.author
-
 doctype html
 html(lang=config.language)
   head
+    //- link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
+    link(rel="stylesheet" href="/css/bootstrap.css")
     meta(charset='UTF-8')
     meta(http-equiv="X-UA-Compatible" content="IE=edge")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
@@ -23,8 +24,11 @@ html(lang=config.language)
     include extended.pug
     block preconnect
   body(class= is_home() ? 'is-home' : '')
+    if theme.navbar.enable
+      include nav.pug
     //- background
     include background.pug
+    //- nav
     .container
       //- global
       include ../_mixin/index.pug

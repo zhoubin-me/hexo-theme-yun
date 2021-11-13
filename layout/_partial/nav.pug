@@ -1,0 +1,38 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-transparrent.fixed(style='right: 50px')
+  //- a.navbar-brand(href='#') Smart City
+  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon(style='display:none')
+  
+  .collapse.navbar-collapse(id='navbarSupportedContent')
+    ul.navbar-nav.mr-auto
+    ul.navbar-nav.float-right
+      if theme.navbar.menu
+        ul.navbar-nav.mr-auto
+          each value, label in theme.navbar.menu
+            if typeof value !== 'object'
+              li.nav-item.active
+                - const valueArray = value.split('||')
+                a.nav-link(href=url_for(trim(valueArray[0])))
+                  span=' '+ label
+
+      //- li.nav-item
+      //-   a.nav-link(href='/login') Login
+      //- li.nav-item.dropdown
+      //-   a.nav-link.dropdown-toggle(id='navbarDropdownMenuLink', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Accounts
+      //-   .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+      //-     a.dropdown-item(href='#') Settings
+          
+
+//- nav.navbar.navbar-expand-lg.navbar-light.bg-transparent(style='right: 50px')
+//-   button.navbar-toggler(style='right: 50px', type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+//-     span.navbar-toggler-icon
+//-   .collapse.navbar-collapse(id='navbarSupportedContent')
+//-   if theme.menu_nav
+//-     ul.navbar-nav.mr-auto
+//-       each value, label in theme.menu_nav
+//-         if typeof value !== 'object'
+//-           li.nav-item.active
+//-             - const valueArray = value.split('||')
+//-             a.nav-link(href=url_for(trim(valueArray[0])))
+//-               span=' '+ label
+
