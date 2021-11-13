@@ -1,6 +1,6 @@
 - var height = "100"
 if theme.navbar.enable
-  - var fraction="93"
+  - var height="93"
 #banner(style='height:' + fraction + 'vh')
   //- span(id='typed').banner-char-container
   //- span(id='typed2').banner-char-container
@@ -12,7 +12,7 @@ if theme.navbar.enable
   if theme.banner.cloud.enable
     include ../_widget/cloud.pug
   if theme.banner.go_down.enable
-    a#goDown(aria-label='go-down' href="javascript:window.scrollTo(0, banner.clientHeight*100/"+fraction+");")
+      a#goDown(aria-label='go-down' href="javascript:window.scrollTo(0, banner.clientHeight*100/"+fraction+");")
       +icon(theme.banner.go_down.icon)
 
 script(src=url_for(theme.cdn.pre + theme.banner.src))
