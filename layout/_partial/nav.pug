@@ -14,7 +14,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-transparrent.fixed(style='right: 50p
               li.nav-item.active
                 - const valueArray = value.split('||')
                 a.nav-link(href=url_for(trim(valueArray[0])))
-                  span=' '+ label
+                  span(style='color: var(--hty-text-color);')=' '+ label
 
       //- li.nav-item
       //-   a.nav-link(href='/login') Login
