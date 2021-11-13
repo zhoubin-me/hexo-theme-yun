@@ -636,3 +636,12 @@ slide:
   config:
     history: true
     mouseWheel: false
+
+navbar:
+  enable: false
+  menu:
+    Home: /
+    Archives: /archives/
+    Tags: /tags/
+    Categories: /categories/
+    About: /about/
