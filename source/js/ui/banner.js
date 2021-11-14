@@ -18,6 +18,15 @@ function random(min, max) {
 function randomInteger(max) {
   return Math.floor(Math.random() * max)
 }
+
+function isMobile(){
+  let info = navigator.userAgent;
+  let agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPod", "iPad"];
+  for(let i = 0; i < agents.length; i++){
+      if(info.indexOf(agents[i]) >= 0) return true;
+  }
+  return false;
+}
 /**
  * 生成标语
  * @param {string} title
@@ -29,10 +38,20 @@ function generateBanner(title, is_random) {
   request.open("GET", "../jueju.json", false);
   request.send(null)
   var data = JSON.parse(request.responseText);
-  var idx = randomInteger(data.length)
-  item = data[idx];
-  content = '﹃' + item['title'] + '﹄' + item['author'] + '·' + item['dynasty'] + '|' + item['content'];
+  if (isMobile()) {
+    while (true) {
+      var idx = randomInteger(data.length)
+      item = data[idx];
+      if (item['lines'] <= 4) {
+        break
+      }
+    }
+  } else {
+    var idx = randomInteger(data.length)
+    item = data[idx];
+  }
   
+  content = '﹃' + item['title'] + '﹄' + item['author'] + '·' + item['dynasty'] + '|' + item['content'];
   let rows = content.split('|');
   rows = rows.reverse()
   for (let r = 0; r < rows.length; r++){
