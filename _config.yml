@@ -301,6 +301,8 @@ banner:
   enable: true
   title: 云游君的小站
   src: /js/ui/banner.js
+  json: /jueju.json
+  random: true
   border: true
   cloud:
     enable: true
@@ -641,3 +643,4 @@ navbar:
   enable: false
   menu:
     Home: /
+

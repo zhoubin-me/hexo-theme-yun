@@ -4,6 +4,7 @@
  * @description https://github.com/YunYouJun/hexo-theme-yun
  */
 
+
 /**
  * 生成介于 min 与 max 之间的随机数
  * @param {number} min
@@ -14,17 +15,28 @@ function random(min, max) {
   return Math.random() * (max - min) + min;
 }
 
+function randomInteger(max) {
+  return Math.floor(Math.random() * max)
+}
 /**
  * 生成标语
  * @param {string} title
  */
-function generateBanner(title) {
+function generateBanner(title, is_random) {
   let sumH = 0;
-
-  // const charContainer = document.querySelector(".banner-char-container");
-  let rows = title.split('|')
+  console.log('haha')
+  var request = new XMLHttpRequest();
+  request.open("GET", "../jueju.json", false);
+  request.send(null)
+  var data = JSON.parse(request.responseText);
+  var idx = randomInteger(data.length)
+  item = data[idx];
+  content = '﹃' + item['title'] + '﹄' + item['author'] + '·' + item['dynasty'] + '|' + item['content'];
+  
+  let rows = content.split('|');
+  rows = rows.reverse()
   for (let r = 0; r < rows.length; r++){
-    row = rows[r].trim()
+    row = rows[r].trim();
     const charContainer = document.getElementById("s" + r.toString());
     charContainer.innerHTML = "";
     for (let i = 0; i < row.length; i++) {
@@ -32,7 +44,7 @@ function generateBanner(title) {
       let charBox = document.createElement("div");
       let rn = random(2.5, 3.5);
       if (r==rows.length-1) {
-        rn = 1.5
+        rn = 1.5;
       }
       charBox.innerHTML = "<span class='char'>" + char + "</span>";
       let charSize = rn + "rem";
@@ -66,8 +78,7 @@ function generateBanner(title) {
 function initBanner() {
   if (window.banner) {
     setTimeout(() => {
-      generateBanner(CONFIG.title);
-      // typedBanner(CONFIG.title)
+      generateBanner(CONFIG.title, CONFIG.random);
     }, 100);
   }
 }

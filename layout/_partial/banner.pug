@@ -10,6 +10,10 @@ if theme.navbar.enable
   div(id='s2').banner-char-container
   div(id='s3').banner-char-container
   div(id='s4').banner-char-container
+  div(id='s5').banner-char-container
+  div(id='s6').banner-char-container
+  div(id='s7').banner-char-container
+  div(id='s8').banner-char-container
   //- .banner-line.vertical-line-bottom
   if theme.banner.cloud.enable
     include ../_widget/cloud.pug
@@ -18,5 +22,6 @@ if theme.navbar.enable
     a#goDown(aria-label='go-down' href="javascript:window.scrollTo(0,banner.clientHeight);")
       +icon(theme.banner.go_down.icon)
 
+script(src=url_for(theme.banner.json), type=text/javascript)
 script(src=url_for(theme.cdn.pre + theme.banner.src))
 script(src=url_for("https://cdn.jsdelivr.net/npm/typed.js@2.0.9"))
