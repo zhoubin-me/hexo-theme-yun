@@ -32,28 +32,19 @@ function isMobile(){
  * @param {string} title
  */
 function generateBanner(title, is_random) {
-  let sumH = 0;
-  console.log('haha')
   var request = new XMLHttpRequest();
-  request.open("GET", "../jueju.json", false);
+  var fname = ''
+  if (isMobile()) {
+    fname = '../sentence.json'
+  } else {
+    fname = '../poem.json'
+  }
+  request.open("GET", fname, false);
   request.send(null)
   var data = JSON.parse(request.responseText);
-  if (isMobile()) {
-    while (true) {
-      var idx = randomInteger(data.length)
-      item = data[idx];
-      if (item['lines'] <= 4) {
-        break
-      }
-    }
-  } else {
-    var idx = randomInteger(data.length)
-    item = data[idx];
-  }
-  
-  content = '﹃' + item['title'] + '﹄' + item['author'] + '·' + item['dynasty'] + '|' + item['content'];
-  let rows = content.split('|');
-  rows = rows.reverse()
+  idx = randomInteger(data.length)
+  var rows = data[idx]['content'].reverse()
+  console.log(rows)
   for (let r = 0; r < rows.length; r++){
     row = rows[r].trim();
     const charContainer = document.getElementById("s" + r.toString());
